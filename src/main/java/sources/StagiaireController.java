@@ -42,6 +42,22 @@ public class StagiaireController {
                 stagiaire.setNom(rs.getString("nom"));
                 stagiaire.setPrenom(rs.getString("prenom"));
                 stagiaire.setClasse(rs.getString("classe"));
+                stagiaire.setCdc(rs.getBoolean("cdc"));
+                stagiaire.setFiche(rs.getBoolean("fiche"));
+                stagiaire.setVisite(rs.getBoolean("visite"));
+                stagiaire.setFiche_evaluation(rs.getBoolean("fiche_evaluation"));
+                stagiaire.setSondage_web(rs.getBoolean("sondage_web"));
+                stagiaire.setRapport_rendu(rs.getBoolean("rapport_rendu"));
+                stagiaire.setSoutenance(rs.getBoolean("soutenance"));
+                stagiaire.setVisite_planif(rs.getBoolean("visite_planification"));
+                stagiaire.setVisite_faite(rs.getBoolean("visite_faite"));
+                stagiaire.setDebut(rs.getDate("debut"));
+                stagiaire.setFin(rs.getDate("fin"));
+                stagiaire.setEntreprise(rs.getString("entreprise"));
+                stagiaire.setMds(rs.getInt("id_tuteur"));
+                stagiaire.setStage_adresse(rs.getString("stage_adresse"));
+                stagiaire.setNote_tech(rs.getInt("note_tech"));
+                stagiaire.setNote_com(rs.getInt("note_com"));
                 stagiaires.add(stagiaire);
                 
             }
