@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proprietes;
+package properties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,13 +17,14 @@ import java.util.Properties;
  */
 public class PropertyLoader {
 
-    private static final String PROPRIETESFILE = "proprietes/database.properties";
+    private static final String PROPRIETESFILE = "database.properties";
 
     public static Properties load() throws IOException, FileNotFoundException {
         Properties properties = new Properties();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream input = classLoader.getResourceAsStream(PROPRIETESFILE);
+        InputStream input = classLoader.getResourceAsStream(PROPRIETESFILE);        
         try {
+
             properties.load(input);
             return properties;
 
@@ -32,6 +33,6 @@ public class PropertyLoader {
         }
     }
     public static void main(String[] args) {
-        System.out.println(System.getProperty("user.dir") + "");
+        
     }
 }

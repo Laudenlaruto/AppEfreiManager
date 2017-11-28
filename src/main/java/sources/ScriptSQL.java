@@ -26,7 +26,7 @@ public class ScriptSQL {
             try {
             Properties prop;
                 try {
-                    prop = proprietes.PropertyLoader.load();
+                    prop = properties.PropertyLoader.load();
                     Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"),prop.getProperty("logindatabase"),prop.getProperty("mdpdatabase"));
                     Statement stmt = c.createStatement();
 
