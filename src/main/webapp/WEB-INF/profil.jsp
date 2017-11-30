@@ -11,8 +11,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <title>AppEfreiManager Profile</title>
+        <title>AppEfreiManager</title>
     </head>
     <body>
 
@@ -59,45 +62,97 @@
                 <tbody>
                    <c:forEach items="${stagiaires}" var="stagiaire">
                        <tr>
+                           
                            <td>
-                           <input name="modifstagiaire" type="radio" id="${stagiaire.prenom}" />
-                           <label for="${stagiaire.prenom}"></label>
+                           <input name="modifstagiaire" type="radio" id="${stagiaire.id}" />
+                           <label for="${stagiaire.id}"></label>
                            </td>  
-                            <td contenteditable='true'><c:out value="${stagiaire.classe}" /></td>
+                            <td><c:out value="${stagiaire.classe}" /></td>
                             <td><c:out value="${stagiaire.nom}" /></td>
-                            <td contenteditable='true'><c:out value="${stagiaire.cdc}" /></td>
-                            <td contenteditable='true'><c:out value="${stagiaire.fiche}" /></td>
-                            <td contenteditable='true'><c:out value="${stagiaire.fiche_evaluation}" /></td>
-                            <td><c:out value="${stagiaire.sondage_web}" /></td>
-                            <td><c:out value="${stagiaire.rapport_rendu}" /></td>
-                            <td><c:out value="${stagiaire.soutenance}" /></td>
-                            <td><c:out value="${stagiaire.visite_planif}" /></td>
-                            <td><c:out value="${stagiaire.visite_faite}" /></td>
+                            <td>
+                                 <p>
+                                    <input type="checkbox" id="cdc" <c:if test="${stagiaire.cdc}">checked</c:if> disabled="disabled" />
+                                    <label for="cdc"></label>
+                                  </p>
+                            </td>
+                            <td>
+                                 <p>
+                                    <input type="checkbox" id="fiche" <c:if test="${stagiaire.fiche}">checked</c:if> disabled="disabled" />
+                                    <label for="fiche"></label>
+                                  </p>
+                            </td>
+                            <td>
+                                 <p>
+                                    <input type="checkbox" id="visite" <c:if test="${stagiaire.fiche_evaluation}">checked</c:if> disabled="disabled" />
+                                    <label for="visite"></label>
+                                  </p>
+                            </td>
+                            <td>
+                                 <p>
+                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.sondage_web}">checked</c:if> disabled="disabled" />
+                                    <label for="test7"></label>
+                                  </p>
+                            </td>
+                            <td>
+                                <p>
+                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.rapport_rendu}">checked</c:if> disabled="disabled" />
+                                    <label for="test7"></label>
+                                  </p>
+                            </td>
+                            <td>
+                                 <p>
+                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.soutenance}">checked</c:if> disabled="disabled" />
+                                    <label for="test7"></label>
+                                  </p>
+                            </td>
+                            <td>
+                                 <p>
+                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.rapport_rendu}">checked</c:if> disabled="disabled" />
+                                    <label for="test7"></label>
+                                  </p>
+                            </td>
+                            <td>
+                                 <p>
+                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.soutenance}">checked</c:if> disabled="disabled" />
+                                    <label for="test7"></label>
+                                  </p>
+                            </td>
                             <td><c:out value="${stagiaire.debut}" /></td>
                             <td><c:out value="${stagiaire.fin}" /></td>
                             <td><c:out value="${stagiaire.entreprise}" /></td>
                             <td><c:out value="${stagiaire.mds}" /></td>
-                            <td contenteditable='true'><c:out value="${stagiaire.stage_adresse}" /></td>
-                            <td contenteditable='true'><c:out value="${stagiaire.note_tech}" /></td>
-                            <td contenteditable='true'><c:out value="${stagiaire.note_com}" /></td>
+                            <td><c:out value="${stagiaire.stage_adresse}" /></td>
+                            <td><c:out value="${stagiaire.note_tech}" /></td>
+                            <td><c:out value="${stagiaire.note_com}" /></td>
                        </tr>
                     </tbody>
                 </c:forEach>
             </table>
-            <button class="btn waves-effect waves-light" type="submit" name="detail">Détail
-                <i class="material-icons right">cached</i>
-            </button>
-            <button class="btn waves-effect waves-light" type="submit" name="valider">Valider
-                <i class="material-icons right">cached</i>
-            </button>
-            <button class="btn waves-effect waves-light" type="submit" name="ajouter">Ajouter
-                <i class="material-icons right">cached</i>
-            </button>
+            <a class="waves-effect waves-light btn modal-trigger" href="#details">Détails 
+                <i class="material-icons">assignment</i>            
+            </a>
+            <a class="waves-effect waves-light btn modal-trigger" href="#ajout">Ajouter un stagiaire 
+                <i class="material-icons">note_add</i>            
+            </a>
+
+
+            <div id="details" class="modal">
+              <div class="modal-content">
+                <h4>Stagiaire</h4>
+                <p>A bunch of text</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+              </div>
+            </div>
+            
            </c:when>
            <c:otherwise>
                <p>Aucun stagiaire ne vous a été affecté! Contactez le service des stages.</p>
            </c:otherwise>
        </c:choose>
 
+    <script src="resources/js/script.js"></script>
     </body>
+
 </html>
