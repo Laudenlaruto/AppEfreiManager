@@ -55,7 +55,9 @@ public class Servlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {       
+        throws ServletException, IOException {
+        
+        
         request.getServletContext().getRequestDispatcher(PAGE_INDEX).forward(request, response);
     }
 
@@ -98,6 +100,12 @@ public class Servlet extends HttpServlet {
         }else if (request.getParameter("returnhome")!=null){
             request.getSession().invalidate();
             request.getServletContext().getRequestDispatcher(PAGE_INDEX).forward(request,response);
+
+        }
+        else if (request.getParameter("getuser")!=null){
+           StagiaireController stagiaireController = new StagiaireController();
+           Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("getuser"));
+           response.setContentType("application/json");
 
         }
         else{

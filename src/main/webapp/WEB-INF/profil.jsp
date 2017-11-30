@@ -12,7 +12,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>AppEfreiManager</title>
@@ -128,7 +127,7 @@
                     </tbody>
                 </c:forEach>
             </table>
-            <a class="waves-effect waves-light btn modal-trigger" href="#details">Détails 
+            <a class="waves-effect waves-light btn modal-trigger" id="buttondetails" href="#details">Détails 
                 <i class="material-icons">assignment</i>            
             </a>
             <a class="waves-effect waves-light btn modal-trigger" href="#ajout">Ajouter un stagiaire 
@@ -138,8 +137,7 @@
 
             <div id="details" class="modal">
               <div class="modal-content">
-                <h4>Stagiaire</h4>
-                <p>A bunch of text</p>
+                <h4 id="namestag">ERROR</h4>
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
