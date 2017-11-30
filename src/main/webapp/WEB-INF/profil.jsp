@@ -30,9 +30,12 @@
                 </ul>
             </div>
         </nav>
+
+        <c:choose>
+           <c:when test="${not empty stagiaires}">
             <table class="centered striped">
                 <thead>
-                  <tr>
+                    <tr>
                       <th>Select</th>
                       <th>Classe</th>
                       <th>Name</th>
@@ -51,14 +54,14 @@
                       <th>Adresse</th>
                       <th>Note Tech</th>
                       <th>Note Com</th>
-                  </tr>
+                    </tr>
                 </thead>
-                 <tbody>
-                    <c:forEach items="${stagiaires}" var="stagiaire">
+                <tbody>
+                   <c:forEach items="${stagiaires}" var="stagiaire">
                        <tr>
                            <td>
-                               <input name="modifstagiaire" type="radio" id="${stagiaire.prenom}" />
-                               <label for="${stagiaire.prenom}"></label>
+                           <input name="modifstagiaire" type="radio" id="${stagiaire.prenom}" />
+                           <label for="${stagiaire.prenom}"></label>
                            </td>  
                             <td contenteditable='true'><c:out value="${stagiaire.classe}" /></td>
                             <td><c:out value="${stagiaire.nom}" /></td>
@@ -77,13 +80,24 @@
                             <td contenteditable='true'><c:out value="${stagiaire.stage_adresse}" /></td>
                             <td contenteditable='true'><c:out value="${stagiaire.note_tech}" /></td>
                             <td contenteditable='true'><c:out value="${stagiaire.note_com}" /></td>
-
                        </tr>
-                    </c:forEach>
-                </tbody>
-          </table>
-            <button class="btn waves-effect waves-light" type="submit" name="update">Submit
+                    </tbody>
+                </c:forEach>
+            </table>
+            <button class="btn waves-effect waves-light" type="submit" name="detail">Détail
                 <i class="material-icons right">cached</i>
             </button>
+            <button class="btn waves-effect waves-light" type="submit" name="valider">Valider
+                <i class="material-icons right">cached</i>
+            </button>
+            <button class="btn waves-effect waves-light" type="submit" name="ajouter">Ajouter
+                <i class="material-icons right">cached</i>
+            </button>
+           </c:when>
+           <c:otherwise>
+               <p>Aucun stagiaire ne vous a été affecté! Contactez le service des stages.</p>
+           </c:otherwise>
+       </c:choose>
+
     </body>
 </html>
