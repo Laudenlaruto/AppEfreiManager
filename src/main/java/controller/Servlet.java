@@ -5,11 +5,15 @@
  */
 package controller;
 
+import com.google.gson.Gson;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Properties;
+import javax.json.Json;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -105,14 +109,12 @@ public class Servlet extends HttpServlet {
         else if (request.getParameter("getuser")!=null){
            StagiaireController stagiaireController = new StagiaireController();
            Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("getuser"));
-           response.setContentType("application/json");
+            String json = new Gson().toJson(stagiaire);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
 
         }
-        else{
-            
-            request.getServletContext().getRequestDispatcher(PAGE_INDEX).forward(request,response);
-        }
-        
     }
 
     /**

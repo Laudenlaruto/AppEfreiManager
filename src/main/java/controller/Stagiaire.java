@@ -138,12 +138,7 @@ public class Stagiaire {
    public Stagiaire() {
     }
 
-    @Override
-    public String toString() {
-        return "Stagiaire{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", classe=" + classe + '}';
-    }
-    
-    public int getId() {
+        public int getId() {
         return id;
     }
 

@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"></script>
+        <script src="ressources/js/script.js"></script>
+
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>AppEfreiManager</title>
     </head>
@@ -137,7 +139,9 @@
 
             <div id="details" class="modal">
               <div class="modal-content">
-                <h4 id="namestag">ERROR</h4>
+                <h4>Stagiaires</h4>
+                <p id="idstag"></p>
+                <p id="data"></p>
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
@@ -150,7 +154,6 @@
            </c:otherwise>
        </c:choose>
 
-    <script src="resources/js/script.js"></script>
     </body>
 
 </html>
