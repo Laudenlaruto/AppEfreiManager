@@ -72,49 +72,55 @@
                             <td><c:out value="${stagiaire.nom}" /></td>
                             <td>
                                  <p>
-                                    <input type="checkbox" id="cdc" <c:if test="${stagiaire.cdc}">checked</c:if> disabled="disabled" />
+                                    <input type="checkbox" id="cdc" <c:if test="${stagiaire.cdc}">checked</c:if>  />
                                     <label for="cdc"></label>
                                   </p>
                             </td>
                             <td>
                                  <p>
-                                    <input type="checkbox" id="fiche" <c:if test="${stagiaire.fiche}">checked</c:if> disabled="disabled" />
+                                    <input type="checkbox" id="fiche" <c:if test="${stagiaire.fiche}">checked</c:if>  />
                                     <label for="fiche"></label>
                                   </p>
                             </td>
                             <td>
                                  <p>
-                                    <input type="checkbox" id="visite" <c:if test="${stagiaire.fiche_evaluation}">checked</c:if> disabled="disabled" />
+                                    <input type="checkbox" id="fiche_evaluation" <c:if test="${stagiaire.fiche_evaluation}">checked</c:if>  />
                                     <label for="visite"></label>
                                   </p>
                             </td>
                             <td>
                                  <p>
-                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.sondage_web}">checked</c:if> disabled="disabled" />
-                                    <label for="test7"></label>
+                                    <input type="checkbox" id="visite" <c:if test="${stagiaire.fiche_evaluation}">checked</c:if>  />
+                                    <label for="visite"></label>
+                                  </p>
+                            </td>
+                            <td>
+                                 <p>
+                                    <input type="checkbox" id="sondage_web" <c:if test="${stagiaire.sondage_web}">checked</c:if>  />
+                                    <label for="sondage_web"></label>
                                   </p>
                             </td>
                             <td>
                                 <p>
-                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.rapport_rendu}">checked</c:if> disabled="disabled" />
-                                    <label for="test7"></label>
+                                    <input type="checkbox" id="rapport_rendu" <c:if test="${stagiaire.rapport_rendu}">checked</c:if>/>
+                                    <label for="rapport_rendu"></label>
                                   </p>
                             </td>
                             <td>
                                  <p>
-                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.soutenance}">checked</c:if> disabled="disabled" />
-                                    <label for="test7"></label>
+                                    <input type="checkbox" id="soutenance" <c:if test="${stagiaire.soutenance}">checked</c:if>  />
+                                    <label for="soutenance"></label>
                                   </p>
                             </td>
                             <td>
                                  <p>
-                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.rapport_rendu}">checked</c:if> disabled="disabled" />
-                                    <label for="test7"></label>
+                                    <input type="checkbox" id="visite_planif" <c:if test="${stagiaire.visite_planif}">checked</c:if>  />
+                                    <label for="visite_planif"></label>
                                   </p>
                             </td>
                             <td>
                                  <p>
-                                    <input type="checkbox" id="test7" <c:if test="${stagiaire.soutenance}">checked</c:if> disabled="disabled" />
+                                    <input type="checkbox" id="visite_faite" <c:if test="${stagiaire.visite_faite}">checked</c:if>  />
                                     <label for="test7"></label>
                                   </p>
                             </td>
@@ -129,6 +135,9 @@
                     </tbody>
                 </c:forEach>
             </table>
+            <a class="waves-effect waves-light btn modal-trigger" href="#ajout">Modifier stagiaires
+                <i class="material-icons">cached</i>            
+            </a>
             <a class="waves-effect waves-light btn modal-trigger" id="buttondetails" href="#details">Détails 
                 <i class="material-icons">assignment</i>            
             </a>
