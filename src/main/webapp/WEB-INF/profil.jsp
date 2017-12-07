@@ -14,6 +14,8 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.1/js/materialize.min.js"></script>
         <script src="ressources/js/script.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>AppEfreiManager</title>
@@ -65,7 +67,7 @@
                        <tr>
                            
                            <td>
-                           <input name="modifstagiaire" type="radio" id="${stagiaire.id}" />
+                           <input checked="checked" name="modifstagiaire" type="radio" id="${stagiaire.id}" />
                            <label for="${stagiaire.id}"></label>
                            </td>  
                             <td><c:out value="${stagiaire.classe}" /></td>
@@ -220,9 +222,27 @@
                         </tr>
                     </tbody>
                     </table>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                             <textarea id="commentaire" class="materialize-textarea"></textarea>
+                             <label for="de">Commentaire</label>
+                       </div>
+                     </div>
+                
+                    <div class="row">
+                        <div class="input-field col s12">
+                             <textarea id="description_mission" class="materialize-textarea"></textarea>
+                             <label for="de">Description Mission</label>
+                       </div>
+                     </div>
+                
+                
+                
+                
               </div>
               <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="valider">Valider</a>
               </div>
             </div>
             
