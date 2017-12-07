@@ -30,10 +30,20 @@ $(document).ready(function(){
               $('#mds').text(json["mds"]);
               $('#stage_adresse').text(json["stage_adresse"]);
               $('#note_tech').text(json["note_tech"]);
-              $('#note_com').text(json["note_com"]);              
+              $('#note_com').text(json["note_com"]);
+              $('#commentaire').text(json["commentaire"]);
+              $('#description_mission').text(json["description_mission"]); 
         });     
     }
   });
+  
+  
+      $("#buttondetails" ).click(function() {
+        var doc = new jsPDF();
+
+        doc.text('Hello world!', 10, 10);
+        doc.save('a4.pdf');
+    });
 });
 
 
