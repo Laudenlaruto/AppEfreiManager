@@ -104,7 +104,7 @@
                                 <p>
                                     <input type="checkbox" id="rapport_rendu" <c:if test="${stagiaire.rapport_rendu}">checked</c:if>/>
                                     <label for="rapport_rendu"></label>
-                                  </p>
+                                  </p>  
                             </td>
                             <td>
                                  <p>
@@ -135,22 +135,97 @@
                     </tbody>
                 </c:forEach>
             </table>
-            <a class="waves-effect waves-light btn modal-trigger" href="#ajout">Modifier stagiaires
-                <i class="material-icons">cached</i>            
-            </a>
-            <a class="waves-effect waves-light btn modal-trigger" id="buttondetails" href="#details">Détails 
-                <i class="material-icons">assignment</i>            
-            </a>
-            <a class="waves-effect waves-light btn modal-trigger" href="#ajout">Ajouter un stagiaire 
-                <i class="material-icons">note_add</i>            
-            </a>
-
+            
+            <div class="right">
+                <a class="waves-effect waves-light btn modal-trigger" id="buttondetails" href="#details"><i class="material-icons right">assignment</i>Détails</a>
+                <a class="waves-effect waves-light btn modal-trigger" href="#ajout"><i class="material-icons right">note_add</i>Ajouter un stagiaire</a>
+            </div>
 
             <div id="details" class="modal">
               <div class="modal-content">
                 <h4>Stagiaires</h4>
                 <p id="idstag"></p>
                 <p id="data"></p>
+                <table class="striped">
+                    <tbody>
+                        <tr>
+                            <td>Classe</td>
+                            <td><span id="classe"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Nom</td>
+                            <td><span id="nom"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Prenom</td>
+                            <td><span id="prenom"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Cdc</td>
+                            <td><input type="checkbox" id="cdc" checked="false" disabled="disabled" /> <label for="cdc"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Fiche</td>
+                            <td><input type="checkbox" id="fiche" checked="false" disabled="disabled" /> <label for="fiche"></label></td>
+                        </tr>
+                        <tr>    
+                            <td>Visite</td>
+                            <td><input type="checkbox" id="visite" checked="false" disabled="disabled" /> <label for="visite"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Fiche Evaluation</td>
+                            <td><input type="checkbox" id="fiche_evaluation" checked="false" disabled="disabled" /> <label for="fiche_evaluation"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Sondage web</td>
+                            <td><input type="checkbox" id="sondage_web" checked="false" disabled="disabled" /> <label for="sondage_web"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Rapport rendu</td>
+                            <td><input type="checkbox" id="rapport_rendu" checked="false" disabled="disabled" /> <label for="rapport_rendu"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Soutenance</td>
+                            <td><input type="checkbox" id="soutenance" checked="false" disabled="disabled" /> <label for="soutenance"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Visite planif</td>
+                            <td><input type="checkbox" id="visite_planif" checked="false" disabled="disabled" /> <label for="visite_planif"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Visite faite</td>
+                            <td><input type="checkbox" id="visite_faite" checked="false" disabled="disabled" /> <label for="visite_faite"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Debut</td>
+                            <td><span id="debut"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Fin</td>
+                            <td><span id="fin"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Entreprise</td>
+                            <td><span id="entreprise"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Mds</td>
+                            <td><span id="mds"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Stage adresse</td>
+                            <td><span id="stage_adresse"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Note tech</td>
+                            <td><span id="note_tech"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Note com</td>
+                            <td><span id="note_com"></span></td>
+                        </tr>
+                    </tbody>
+                    </table>
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
