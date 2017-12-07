@@ -113,4 +113,22 @@ public class StagiaireController {
         }
             
          return null;      }
+    
+     public void updateCommentaire(String id_stagiaire, String commentaire) throws IOException {
+        try {
+            int id_stag = Integer.parseInt(id_stagiaire);
+
+            Properties prop = PropertyLoader.load();
+
+            Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"),prop.getProperty("logindatabase"),prop.getProperty("mdpdatabase"));
+            Statement stmt = c.createStatement();
+            PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET commentaire = ? where id_stagiaire = ?");
+            pstmt.setString(1, commentaire);
+            pstmt.setInt(2, id_stag);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }            
+     }      
+    
 }
