@@ -58,22 +58,6 @@ public class Stagiaire {
         this.commentaire = commentaire;
     }
 
-    public boolean isFiche_visite() {
-        return fiche_visite;
-    }
-
-    public String getDescription_mission() {
-        return description_mission;
-    }
-
-    public void setFiche_visite(boolean fiche_visite) {
-        this.fiche_visite = fiche_visite;
-    }
-
-    public void setDescription_mission(String description_mission) {
-        this.description_mission = description_mission;
-    }
-
     public String getDescription() {
         return description_mission;
     }
@@ -110,6 +94,10 @@ public class Stagiaire {
 
     public void setCdc(boolean cdc) {
         this.cdc = cdc;
+    }
+
+    public void setFiche(boolean fiche) {
+        this.fiche_visite = fiche;
     }
 
 
@@ -204,7 +192,11 @@ public class Stagiaire {
         return cdc;
     }
 
-  
+    public boolean isFiche() {
+        return fiche_visite;
+    }
+
+   
 
 
     public boolean isFiche_evaluation() {
