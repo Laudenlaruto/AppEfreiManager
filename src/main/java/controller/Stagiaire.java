@@ -73,6 +73,22 @@ public class Stagiaire {
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
+
+    public boolean isFiche_visite() {
+        return fiche_visite;
+    }
+
+    public void setFiche_visite(boolean fiche_visite) {
+        this.fiche_visite = fiche_visite;
+    }
+
+    public String getDescription_mission() {
+        return description_mission;
+    }
+
+    public void setDescription_mission(String description_mission) {
+        this.description_mission = description_mission;
+    }
             
 
 

@@ -125,6 +125,7 @@ public class StagiaireController {
             PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET commentaire = ? where id_stagiaire = ?");
             pstmt.setString(1, commentaire);
             pstmt.setInt(2, id_stag);
+            pstmt.executeQuery();
             
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
