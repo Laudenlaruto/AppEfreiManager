@@ -58,6 +58,8 @@ public class StagiaireController {
                 stagiaire.setStage_adresse(rs.getString("stage_adresse"));
                 stagiaire.setNote_tech(rs.getInt("note_tech"));
                 stagiaire.setNote_com(rs.getInt("note_com"));
+                stagiaire.setStage_adresse(rs.getString("description_mission"));
+                stagiaire.setStage_adresse(rs.getString("stage_adresse"));
                 stagiaires.add(stagiaire);
                 
             }
@@ -102,6 +104,9 @@ public class StagiaireController {
                 stagiaire.setStage_adresse(rs.getString("stage_adresse"));
                 stagiaire.setNote_tech(rs.getInt("note_tech"));
                 stagiaire.setNote_com(rs.getInt("note_com"));
+                stagiaire.setDescription(rs.getString("description_mission"));
+                stagiaire.setCommentaire(rs.getString("commentaire"));
+                
                 
             }
             return stagiaire;
