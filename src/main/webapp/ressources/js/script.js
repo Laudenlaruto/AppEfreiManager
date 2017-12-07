@@ -11,7 +11,6 @@ $(document).ready(function(){
         var id_stagiaire= $('input[name=modifstagiaire]:checked').attr('id');
         var data ={ getuser : id_stagiaire };
         $.post("Servlet",data, function(json){
-              stagiaire = data[0];
               $('#classe').text(json["classe"]);
               $('#nom').text(json["nom"]);
               $('#prenom').text(json["prenom"]);
@@ -38,7 +37,7 @@ $(document).ready(function(){
   });
   
   
-      $("#buttondetails" ).click(function() {
+      $("#" ).click(function() {
         var doc = new jsPDF();
 
         doc.text('Hello world!', 10, 10);
