@@ -35,7 +35,6 @@ public class Stagiaire {
     private String commentaire;
 
     public Stagiaire(int id, String nom, String prenom, String classe, boolean cdc, boolean fiche_visite, boolean fiche_evaluation, boolean sondage_web, boolean rapport_rendu, boolean soutenance, boolean visite_planif, boolean visite_faite, Date debut, Date fin, String entreprise, int mds, String stage_adresse, int note_tech, int note_com, String description, String commentaire) {
-    public Stagiaire(int id, int mds, String nom, String prenom, String classe, boolean cdc, boolean fiche_visite, boolean fiche_evaluation, boolean sondage_web, boolean rapport_rendu, boolean soutenance, boolean visite_planif, boolean visite_faite, Date debut, Date fin, String entreprise, String stage_adresse, int note_tech, int note_com) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
