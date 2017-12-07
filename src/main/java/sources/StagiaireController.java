@@ -43,8 +43,7 @@ public class StagiaireController {
                 stagiaire.setPrenom(rs.getString("prenom"));
                 stagiaire.setClasse(rs.getString("classe"));
                 stagiaire.setCdc(rs.getBoolean("cdc"));
-                stagiaire.setFiche(rs.getBoolean("fiche"));
-                stagiaire.setVisite(rs.getBoolean("visite"));
+                stagiaire.setFiche(rs.getBoolean("fiche_visite"));
                 stagiaire.setFiche_evaluation(rs.getBoolean("fiche_evaluation"));
                 stagiaire.setSondage_web(rs.getBoolean("sondage_web"));
                 stagiaire.setRapport_rendu(rs.getBoolean("rapport_rendu"));
@@ -87,8 +86,7 @@ public class StagiaireController {
                 stagiaire.setPrenom(rs.getString("prenom"));
                 stagiaire.setClasse(rs.getString("classe"));
                 stagiaire.setCdc(rs.getBoolean("cdc"));
-                stagiaire.setFiche(rs.getBoolean("fiche"));
-                stagiaire.setVisite(rs.getBoolean("visite"));
+                stagiaire.setFiche(rs.getBoolean("fiche_visite"));
                 stagiaire.setFiche_evaluation(rs.getBoolean("fiche_evaluation"));
                 stagiaire.setSondage_web(rs.getBoolean("sondage_web"));
                 stagiaire.setRapport_rendu(rs.getBoolean("rapport_rendu"));

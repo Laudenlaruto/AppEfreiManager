@@ -17,8 +17,7 @@ public class Stagiaire {
     private String prenom;
     private String classe;
     private boolean cdc;
-    private boolean fiche;
-    private boolean visite;
+    private boolean fiche_visite;
     private boolean fiche_evaluation;
     private boolean sondage_web;
     private boolean rapport_rendu;
@@ -33,14 +32,13 @@ public class Stagiaire {
     private int note_tech;
     private int note_com;
 
-    public Stagiaire(int id, int mds, String nom, String prenom, String classe, boolean cdc, boolean fiche, boolean visite, boolean fiche_evaluation, boolean sondage_web, boolean rapport_rendu, boolean soutenance, boolean visite_planif, boolean visite_faite, Date debut, Date fin, String entreprise, String stage_adresse, int note_tech, int note_com) {
+    public Stagiaire(int id, int mds, String nom, String prenom, String classe, boolean cdc, boolean fiche_visite, boolean fiche_evaluation, boolean sondage_web, boolean rapport_rendu, boolean soutenance, boolean visite_planif, boolean visite_faite, Date debut, Date fin, String entreprise, String stage_adresse, int note_tech, int note_com) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.classe = classe;
         this.cdc = cdc;
-        this.fiche = fiche;
-        this.visite = visite;
+        this.fiche_visite = fiche_visite;
         this.fiche_evaluation = fiche_evaluation;
         this.sondage_web = sondage_web;
         this.rapport_rendu = rapport_rendu;
@@ -77,12 +75,10 @@ public class Stagiaire {
     }
 
     public void setFiche(boolean fiche) {
-        this.fiche = fiche;
+        this.fiche_visite = fiche;
     }
 
-    public void setVisite(boolean visite) {
-        this.visite = visite;
-    }
+
 
     public void setFiche_evaluation(boolean fiche_evaluation) {
         this.fiche_evaluation = fiche_evaluation;
@@ -175,12 +171,10 @@ public class Stagiaire {
     }
 
     public boolean isFiche() {
-        return fiche;
+        return fiche_visite;
     }
 
-    public boolean isVisite() {
-        return visite;
-    }
+   
 
     public boolean isFiche_evaluation() {
         return fiche_evaluation;
