@@ -10,13 +10,9 @@ $(document).ready(function(){
     if($('input[name=modifstagiaire]').is(':checked')){
         var id_stagiaire= $('input[name=modifstagiaire]:checked').attr('id');
         var data ={ getuser : id_stagiaire };
-        $.post("Servlet",data, function(data){
-              $('#idstag').text(id_stagiaire);
-              $('#data').text(JSON.parse(data));
-              var jsonObject = JSON.parse(data)
-              window.alert(jsonObject.keys());  
-              
-
+        $.post("Servlet",data, function(json){
+              stagiaire = data[0];
+              $('#data').text(json["nom"]);              
         });     
     }
   });
