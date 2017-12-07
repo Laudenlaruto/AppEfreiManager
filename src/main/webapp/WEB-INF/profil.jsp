@@ -80,8 +80,8 @@
                             </td>
                             <td>
                                  <p>
-                                    <input type="checkbox" id="${stagiaire.id}.fiche" <c:if test="${stagiaire.fiche}">checked</c:if>  />
-                                    <label for="${stagiaire.id}.fiche"></label>
+                                    <input type="checkbox" id="${stagiaire.id}.fiche_visite" <c:if test="${stagiaire.fiche_visite}">checked</c:if>  />
+                                    <label for="${stagiaire.id}.fiche_visite"></label>
                                   </p>
                             </td>
                             <td>
@@ -162,8 +162,8 @@
                             <td><input type="checkbox" id="cdc" checked="false" disabled="disabled" /> <label for="cdc"></label></td>
                         </tr>
                         <tr>
-                            <td>Fiche</td>
-                            <td><input type="checkbox" id="fiche" checked="false" disabled="disabled" /> <label for="fiche"></label></td>
+                            <td>Fiche visite</td>
+                            <td><input type="checkbox" id="fiche_visite" checked="false" disabled="disabled" /> <label for="fiche_visite"></label></td>
                         </tr>
                         <tr>    
                             <td>Visite</td>
