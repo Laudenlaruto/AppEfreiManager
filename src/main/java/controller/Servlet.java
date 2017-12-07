@@ -107,13 +107,22 @@ public class Servlet extends HttpServlet {
 
         }
         else if (request.getParameter("getuser")!=null){
-           StagiaireController stagiaireController = new StagiaireController();
-           Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("getuser"));
+            StagiaireController stagiaireController = new StagiaireController();
+            Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("getuser"));
             String json = new Gson().toJson(stagiaire);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
 
+        }
+        else if (request.getParameter("createPDF")!=null){
+            StagiaireController stagiaireController = new StagiaireController();
+            Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("createPDF"));
+            
+            request.getParameter("commentaire");
+            request.getParameter("description");
+                    
+            
         }
     }
 
