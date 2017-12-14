@@ -176,8 +176,7 @@ public class StagiaireController {
             pstmt.setInt(14, stagiaire.getNote_com());         
             pstmt.setInt(15, stagiaire.getId());
             
-            pstmt.executeQuery();
-            
+                      
             PreparedStatement pstmt2 = c.prepareStatement("UPDATE stagiaire SET "
                                                         + "nom = ? ,"
                                                         + "classe = ? ,"
@@ -186,7 +185,7 @@ public class StagiaireController {
             pstmt2.setString(1, stagiaire.getNom());
             pstmt2.setString(2, stagiaire.getClasse());
             pstmt2.setInt(3, stagiaire.getId());
-            pstmt2.executeQuery();
+            pstmt2.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
