@@ -13,7 +13,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import properties.PropertyLoader;
@@ -23,20 +22,17 @@ import properties.PropertyLoader;
  * @author PC-Acta
  */
 public class UserController {
-    public User getUser(String login, String mdp) throws IOException{
-        
-       
-        try {
-            Properties prop = PropertyLoader.load();
 
-            Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"),prop.getProperty("logindatabase"),prop.getProperty("mdpdatabase"));
-            Statement stmt = c.createStatement();
+    public User getUser(String login, String mdp) throws IOException {
+        Properties prop = PropertyLoader.load();
+
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
             PreparedStatement pstmt = c.prepareStatement("SELECT * from tuteur where login = ? and mdp= ?");
             pstmt.setString(1, login);
-            pstmt.setString(2,mdp);
+            pstmt.setString(2, mdp);
             ResultSet rs = pstmt.executeQuery();
             User user = new User();
-            if(rs.next()){
+            if (rs.next()) {
                 user.setLogin(rs.getString("login"));
                 user.setMdp(rs.getString("mdp"));
                 user.setNom(rs.getString("nom"));
@@ -47,7 +43,7 @@ public class UserController {
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-         return null;   
+
+        return null;
     }
 }

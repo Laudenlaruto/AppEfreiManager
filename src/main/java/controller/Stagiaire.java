@@ -34,6 +34,30 @@ public class Stagiaire {
     private String description_mission;
     private String commentaire;
 
+    public Stagiaire(){
+        this.id = 0;
+        this.nom = null;
+        this.prenom = null;
+        this.classe = null;
+        this.cdc = false;
+        this.fiche_visite = false;
+        this.fiche_evaluation = false;
+        this.sondage_web = false;
+        this.rapport_rendu = false;
+        this.soutenance = false;
+        this.visite_planif = false;
+        this.visite_faite = false;
+        this.debut = null;
+        this.fin = null;
+        this.entreprise = null;
+        this.mds = 0;
+        this.stage_adresse = null;
+        this.note_tech = 0;
+        this.note_com = 0;
+        this.description_mission = null;
+        this.commentaire = null;
+    }
+    
     public Stagiaire(int id, String nom, String prenom, String classe, boolean cdc, boolean fiche_visite, boolean fiche_evaluation, boolean sondage_web, boolean rapport_rendu, boolean soutenance, boolean visite_planif, boolean visite_faite, Date debut, Date fin, String entreprise, int mds, String stage_adresse, int note_tech, int note_com, String description, String commentaire) {
         this.id = id;
         this.nom = nom;
@@ -146,6 +170,7 @@ public class Stagiaire {
         this.fin = fin;
     }
 
+    
     public void setEntreprise(String entreprise) {
         this.entreprise = entreprise;
     }
@@ -168,8 +193,6 @@ public class Stagiaire {
         this.nom = nom;
         this.prenom = prenom;
         this.classe = classe;
-    }
-   public Stagiaire() {
     }
 
         public int getId() {
