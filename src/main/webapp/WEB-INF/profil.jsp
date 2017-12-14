@@ -67,13 +67,13 @@
                             <c:forEach items="${stagiaires}" var="stagiaire">
                                 <tr>
                                     <td>
-                                        <input name="idstag" type="radio" value="${stagiaire.id}" />
+                                        <input name="idstag" type="radio" id="${stagiaire.id}" value="${stagiaire.id}" />
                                         <label for="${stagiaire.id}"></label>
                                     </td>
-                                    <td><input type="hidden" name="id" value="${stagiaire.id}" /></td>                                    
+                                    <input type="hidden" name="id" value="${stagiaire.id}" />                                   
                                     
-                                   <td><input type="text" name="classe" value="${stagiaire.classe}" /></td>
-                                    <td><input type="text" name="nom" value="${stagiaire.nom}" /></td>
+                                   <td><input type="text" name="${stagiaire.id}.classe" value="${stagiaire.classe}" /></td>
+                                    <td><input type="text" name="${stagiaire.id}.nom" value="${stagiaire.nom}" /></td>
 
                                     <td>
                                         <p>

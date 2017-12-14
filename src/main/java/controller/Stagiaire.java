@@ -136,10 +136,7 @@ public class Stagiaire {
         this.cdc = cdc;
     }
 
-    public void setFiche(boolean fiche) {
-        this.fiche_visite = fiche;
-    }
-
+ 
 
 
     public void setFiche_evaluation(boolean fiche_evaluation) {
@@ -231,12 +228,7 @@ public class Stagiaire {
         return cdc;
     }
 
-    public boolean isFiche() {
-        return fiche_visite;
-    }
-
-   
-
+ 
 
     public boolean isFiche_evaluation() {
         return fiche_evaluation;

@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.List;
 import java.util.Properties;
 import javax.json.Json;
@@ -110,20 +111,31 @@ public class Servlet extends HttpServlet {
             response.getWriter().write(json);
 
         } else if (request.getParameter("actionupdatestagiaire") != null) {
-  
+             StagiaireController stag = new StagiaireController();
             String[] id = request.getParameterValues("id");
             for (int i=0; i<id.length;i++){
                 Stagiaire stagiaire = new Stagiaire();
-                stagiaire.setCdc(Boolean.valueOf(request.getParameter(id[i]+".cdc")));
-                stagiaire.setCdc(Boolean.valueOf(request.getParameter(id[i]+".fiche_visite")));
-                stagiaire.setCdc(Boolean.valueOf(request.getParameter(id[i]+".fiche_evaluation")));
-               
+                stagiaire.setId(Integer.valueOf(id[i]));
+                stagiaire.setNom(request.getParameter(id[i]+".nom"));
+                stagiaire.setClasse(request.getParameter(id[i]+".classe"));
+                stagiaire.setCdc((request.getParameter(id[i]+".cdc") != null));
+                stagiaire.setFiche_visite((request.getParameter(id[i]+".fiche_visite") != null));
+                stagiaire.setFiche_evaluation(request.getParameter(id[i]+".fiche_evaluation")!=null);
+                stagiaire.setSondage_web(request.getParameter(id[i]+".sondage_web")!=null);
+                stagiaire.setRapport_rendu(request.getParameter(id[i]+".rapport_rendu")!=null);
+                stagiaire.setSoutenance(request.getParameter(id[i]+".soutenance")!=null);
+                stagiaire.setVisite_planif(request.getParameter(id[i]+".visite_planif")!=null);
+                stagiaire.setVisite_faite(request.getParameter(id[i]+".visite_faite")!=null);
+                stagiaire.setDebut(Date.valueOf(request.getParameter(id[i]+".startDate")));
+                stagiaire.setFin(Date.valueOf(request.getParameter(id[i]+".endDate")));
+                stagiaire.setEntreprise(request.getParameter(id[i]+".entreprise"));
+                stagiaire.setMds(Integer.valueOf(request.getParameter(id[i]+".mds")));
+                stagiaire.setStage_adresse(request.getParameter(id[i]+".addr"));
+                stagiaire.setNote_tech(Integer.valueOf(request.getParameter(id[i]+".note_tech")));
+                stagiaire.setNote_com(Integer.valueOf(request.getParameter(id[i]+".note_com")));
                 
-            }
-            
-            
-
-          
+                stag.updateStagiaire(stagiaire);
+            } 
 
         }
         else if (request.getParameter("createPDF")!=null){

@@ -175,12 +175,12 @@ public class StagiaireController {
             pstmt.setInt(13, stagiaire.getNote_tech());
             pstmt.setInt(14, stagiaire.getNote_com());         
             pstmt.setInt(15, stagiaire.getId());
-            
+            pstmt.executeUpdate();
                       
             PreparedStatement pstmt2 = c.prepareStatement("UPDATE stagiaire SET "
                                                         + "nom = ? ,"
-                                                        + "classe = ? ,"
-                                                        + "WHERE id_stagiaire = ?");
+                                                        + "classe = ? "
+                                                        + "WHERE id = ?");
             
             pstmt2.setString(1, stagiaire.getNom());
             pstmt2.setString(2, stagiaire.getClasse());
