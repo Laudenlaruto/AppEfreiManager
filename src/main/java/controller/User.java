@@ -10,11 +10,20 @@ package controller;
  * @author PC-Acta
  */
 public class User {
+
     private int id;
     private String login;
     private String mdp;
     private String nom;
     private String prenom;
+
+    public User() {
+        this.id = 0;
+        this.login = null;
+        this.mdp = null;
+        this.nom = null;
+        this.prenom = null;
+    }
 
     public int getId() {
         return id;
@@ -39,8 +48,7 @@ public class User {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    
-    
+
     public String getLogin() {
         return login;
     }

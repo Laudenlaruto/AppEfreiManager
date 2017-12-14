@@ -6,14 +6,12 @@
 package sources;
 
 import controller.Stagiaire;
-import controller.User;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -25,18 +23,16 @@ import properties.PropertyLoader;
  * @author PC-Acta
  */
 public class StagiaireController {
-    public ArrayList<Stagiaire> getStagiaires(int idTuteur) throws IOException{
-        try {
-            Properties prop = PropertyLoader.load();
 
-            Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"),prop.getProperty("logindatabase"),prop.getProperty("mdpdatabase"));
-            Statement stmt = c.createStatement();
+    public ArrayList<Stagiaire> getStagiaires(int idTuteur) throws IOException {
+        Properties prop = PropertyLoader.load();
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
             PreparedStatement pstmt = c.prepareStatement("SELECT * FROM entreprise NATURAL JOIN stagiaire where id_tuteur = ?");
             pstmt.setInt(1, idTuteur);
             ResultSet rs = pstmt.executeQuery();
             ArrayList<Stagiaire> stagiaires = new ArrayList<>();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Stagiaire stagiaire = new Stagiaire();
                 stagiaire.setId(rs.getInt("id_stagiaire"));
                 stagiaire.setNom(rs.getString("nom"));
@@ -60,29 +56,26 @@ public class StagiaireController {
                 stagiaire.setStage_adresse(rs.getString("description_mission"));
                 stagiaire.setStage_adresse(rs.getString("stage_adresse"));
                 stagiaires.add(stagiaire);
-                
+
             }
             return stagiaires;
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-         return null;   
+
+        return null;
     }
 
     public Stagiaire getStagiaire(String id_stagiaire) throws IOException {
- try {
+        Properties prop = PropertyLoader.load();
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
             int id_stag = Integer.parseInt(id_stagiaire);
 
-            Properties prop = PropertyLoader.load();
-
-            Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"),prop.getProperty("logindatabase"),prop.getProperty("mdpdatabase"));
-            Statement stmt = c.createStatement();
             PreparedStatement pstmt = c.prepareStatement("SELECT * FROM entreprise NATURAL JOIN stagiaire where id_stagiaire = ?");
             pstmt.setInt(1, id_stag);
             ResultSet rs = pstmt.executeQuery();
             Stagiaire stagiaire = new Stagiaire();
-            if(rs.next()){
+            if (rs.next()) {
                 stagiaire.setId(rs.getInt("id_stagiaire"));
                 stagiaire.setNom(rs.getString("nom"));
                 stagiaire.setPrenom(rs.getString("prenom"));
@@ -104,32 +97,93 @@ public class StagiaireController {
                 stagiaire.setNote_com(rs.getInt("note_com"));
                 stagiaire.setDescription(rs.getString("description_mission"));
                 stagiaire.setCommentaire(rs.getString("commentaire"));
-                
-                
             }
             return stagiaire;
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-         return null;      }
-    
-     public void updateCommentaire(String id_stagiaire, String commentaire) throws IOException {
-        try {
+
+        return null;
+    }
+
+    public void updateCommentaire(String com, String id_stagiaire) throws IOException {
+        Properties prop = PropertyLoader.load();
+
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
             int id_stag = Integer.parseInt(id_stagiaire);
-
-            Properties prop = PropertyLoader.load();
-
-            Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"),prop.getProperty("logindatabase"),prop.getProperty("mdpdatabase"));
-            Statement stmt = c.createStatement();
             PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET commentaire = ? where id_stagiaire = ?");
-            pstmt.setString(1, commentaire);
+            pstmt.setString(1, com);
             pstmt.setInt(2, id_stag);
             pstmt.executeQuery();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-        }            
-     }      
+        }
+    }
+
+    public void updateDescription(String description, String id_stagiaire) throws IOException {
+        Properties prop = PropertyLoader.load();
+
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
+
+            int id_stag = Integer.parseInt(id_stagiaire);
+
+            PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET description_mission = ? where id_stagiaire = ?");
+            pstmt.setString(1, description);
+            pstmt.setInt(2, id_stag);
+            pstmt.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
+        public void updateStagiaire(Stagiaire stagiaire) throws IOException {
+        Properties prop = PropertyLoader.load();
+
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
+
+            PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET "
+                                                        + "nom = ? ,"
+                                                        + "classe = ? ,"
+                                                        + "cdc = ? ,"
+                                                        + "fiche_visite = ? ,"
+                                                        + "fiche_evaluation = ? ,"
+                                                        + "sondage_web = ? ,"
+                                                        + "rapport_rendu = ? ,"
+                                                        + "soutenance = ? ,"
+                                                        + "visite_planification = ? ,"
+                                                        + "visite_faite = ? ,"
+                                                        + "debut = ? ,"
+                                                        + "fin = ? ,"
+                                                        + "entreprise = ? ,"
+                                                        + "stage_adresse = ? ,"
+                                                        + "note_tech = ? ,"
+                                                        + "note_com = ? "
+                                                        + "WHERE id_stagiaire = ?");
+            
+            pstmt.setString(1, stagiaire.getNom());
+            pstmt.setString(2, stagiaire.getClasse());
+            pstmt.setBoolean(3, stagiaire.isCdc());
+            pstmt.setBoolean(4, stagiaire.isFiche_visite());
+            pstmt.setBoolean(5, stagiaire.isFiche_evaluation());
+            pstmt.setBoolean(6, stagiaire.isSondage_web());
+            pstmt.setBoolean(7, stagiaire.isRapport_rendu());
+            pstmt.setBoolean(8, stagiaire.isSoutenance());
+            pstmt.setBoolean(9, stagiaire.isVisite_planif());
+            pstmt.setBoolean(10, stagiaire.isVisite_faite());
+            pstmt.setDate(11, stagiaire.getDebut());
+            pstmt.setDate(12, stagiaire.getFin());
+            pstmt.setString(13, stagiaire.getEntreprise());
+            pstmt.setString(14, stagiaire.getStage_adresse());
+            pstmt.setInt(15, stagiaire.getNote_tech());
+            pstmt.setInt(16, stagiaire.getNote_com());         
+            pstmt.setInt(17, stagiaire.getId());
+            
+            pstmt.executeQuery();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
