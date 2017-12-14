@@ -80,6 +80,8 @@ public class Servlet extends HttpServlet {
 
                 if (user != null) {
                     request.getSession().setAttribute("user", user);
+                    request.getSession().setAttribute("userid", user.getId());
+
                     StagiaireController stagiaireController = new StagiaireController();
                     List<Stagiaire> stagiaires = stagiaireController.getStagiaires(user.getId());
                     request.setAttribute("stagiaires", stagiaires);
@@ -135,10 +137,13 @@ public class Servlet extends HttpServlet {
                 stagiaire.setNote_com(Integer.valueOf(request.getParameter(id[i]+".note_com")));
                 
                 stag.updateStagiaire(stagiaire);
-            } 
-          
-            request.getSession();
-            doPost(request, response);
+            }
+            
+            StagiaireController stagiaireController = new StagiaireController();
+            List<Stagiaire> stagiaires = stagiaireController.getStagiaires((int)(request.getSession().getAttribute("userid")));
+            request.setAttribute("stagiaires", stagiaires);
+            request.setAttribute("size", stagiaires.size());
+            request.getRequestDispatcher(PAGE_PROFIL).forward(request, response);
 
         }
         else if (request.getParameter("createPDF")!=null){
