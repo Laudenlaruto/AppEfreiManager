@@ -162,25 +162,33 @@ public class StagiaireController {
                                                         + "note_com = ? "
                                                         + "WHERE id_stagiaire = ?");
             
-            pstmt.setString(1, stagiaire.getNom());
-            pstmt.setString(2, stagiaire.getClasse());
-            pstmt.setBoolean(3, stagiaire.isCdc());
-            pstmt.setBoolean(4, stagiaire.isFiche_visite());
-            pstmt.setBoolean(5, stagiaire.isFiche_evaluation());
-            pstmt.setBoolean(6, stagiaire.isSondage_web());
-            pstmt.setBoolean(7, stagiaire.isRapport_rendu());
-            pstmt.setBoolean(8, stagiaire.isSoutenance());
-            pstmt.setBoolean(9, stagiaire.isVisite_planif());
-            pstmt.setBoolean(10, stagiaire.isVisite_faite());
-            pstmt.setDate(11, stagiaire.getDebut());
-            pstmt.setDate(12, stagiaire.getFin());
-            pstmt.setString(13, stagiaire.getEntreprise());
-            pstmt.setString(14, stagiaire.getStage_adresse());
-            pstmt.setInt(15, stagiaire.getNote_tech());
-            pstmt.setInt(16, stagiaire.getNote_com());         
-            pstmt.setInt(17, stagiaire.getId());
+            pstmt.setBoolean(1, stagiaire.isCdc());
+            pstmt.setBoolean(2, stagiaire.isFiche_visite());
+            pstmt.setBoolean(3, stagiaire.isFiche_evaluation());
+            pstmt.setBoolean(4, stagiaire.isSondage_web());
+            pstmt.setBoolean(5, stagiaire.isRapport_rendu());
+            pstmt.setBoolean(6, stagiaire.isSoutenance());
+            pstmt.setBoolean(7, stagiaire.isVisite_planif());
+            pstmt.setBoolean(8, stagiaire.isVisite_faite());
+            pstmt.setDate(9, stagiaire.getDebut());
+            pstmt.setDate(10, stagiaire.getFin());
+            pstmt.setString(11, stagiaire.getEntreprise());
+            pstmt.setString(12, stagiaire.getStage_adresse());
+            pstmt.setInt(13, stagiaire.getNote_tech());
+            pstmt.setInt(14, stagiaire.getNote_com());         
+            pstmt.setInt(15, stagiaire.getId());
             
             pstmt.executeQuery();
+            
+            PreparedStatement pstmt2 = c.prepareStatement("UPDATE stagiaire SET "
+                                                        + "nom = ? ,"
+                                                        + "classe = ? ,"
+                                                        + "WHERE id_stagiaire = ?");
+            
+            pstmt2.setString(1, stagiaire.getNom());
+            pstmt2.setString(2, stagiaire.getClasse());
+            pstmt2.setInt(3, stagiaire.getId());
+            pstmt2.executeQuery();
 
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
