@@ -83,7 +83,7 @@
                                         </td>
                                         <td>
                                             <p>
-                                                <input type="checkbox" name="${stagiaire.id}.fiche_visite" id="${stagiaire.id}.fiche_visite}" <c:if test="${stagiaire.fiche_visite}">checked</c:if>  />
+                                                <input type="checkbox" name="${stagiaire.id}.fiche_visite" id="${stagiaire.id}.fiche_visite" <c:if test="${stagiaire.fiche_visite}">checked</c:if>  />
                                                 <label for="${stagiaire.id}.fiche_visite"></label>
                                             </p>
                                         </td>

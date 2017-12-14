@@ -27,7 +27,7 @@ public class Stagiaire {
     private Date debut;
     private Date fin;
     private String entreprise;
-    private int mds;
+    private String mds;
     private String stage_adresse;
     private int note_tech;
     private int note_com;
@@ -50,7 +50,7 @@ public class Stagiaire {
         this.debut = null;
         this.fin = null;
         this.entreprise = null;
-        this.mds = 0;
+        this.mds = null;
         this.stage_adresse = null;
         this.note_tech = 0;
         this.note_com = 0;
@@ -58,7 +58,7 @@ public class Stagiaire {
         this.commentaire = null;
     }
     
-    public Stagiaire(int id, String nom, String prenom, String classe, boolean cdc, boolean fiche_visite, boolean fiche_evaluation, boolean sondage_web, boolean rapport_rendu, boolean soutenance, boolean visite_planif, boolean visite_faite, Date debut, Date fin, String entreprise, int mds, String stage_adresse, int note_tech, int note_com, String description, String commentaire) {
+    public Stagiaire(int id, String nom, String prenom, String classe, boolean cdc, boolean fiche_visite, boolean fiche_evaluation, boolean sondage_web, boolean rapport_rendu, boolean soutenance, boolean visite_planif, boolean visite_faite, Date debut, Date fin, String entreprise, String mds, String stage_adresse, int note_tech, int note_com, String description, String commentaire) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -116,17 +116,13 @@ public class Stagiaire {
             
 
 
-    public void setMds(int mds) {
-        this.mds = mds;
-    }
+   
 
     public boolean isRapport_rendu() {
         return rapport_rendu;
     }
 
-    public int getMds() {
-        return mds;
-    }
+
 
     public void setRapport_rendu(boolean rapport_rendu) {
         this.rapport_rendu = rapport_rendu;
@@ -272,6 +268,14 @@ public class Stagiaire {
 
     public int getNote_com() {
         return note_com;
+    }
+
+    public void setMds(String mds) {
+        this.mds = mds;
+    }
+
+    public String getMds() {
+        return mds;
     }
     
     

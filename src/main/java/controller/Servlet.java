@@ -129,13 +129,16 @@ public class Servlet extends HttpServlet {
                 stagiaire.setDebut(Date.valueOf(request.getParameter(id[i]+".startDate")));
                 stagiaire.setFin(Date.valueOf(request.getParameter(id[i]+".endDate")));
                 stagiaire.setEntreprise(request.getParameter(id[i]+".entreprise"));
-                stagiaire.setMds(Integer.valueOf(request.getParameter(id[i]+".mds")));
+                stagiaire.setMds(request.getParameter(id[i]+".mds"));
                 stagiaire.setStage_adresse(request.getParameter(id[i]+".addr"));
                 stagiaire.setNote_tech(Integer.valueOf(request.getParameter(id[i]+".note_tech")));
                 stagiaire.setNote_com(Integer.valueOf(request.getParameter(id[i]+".note_com")));
                 
                 stag.updateStagiaire(stagiaire);
             } 
+          
+            request.getSession();
+            doPost(request, response);
 
         }
         else if (request.getParameter("createPDF")!=null){

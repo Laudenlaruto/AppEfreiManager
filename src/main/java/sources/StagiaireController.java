@@ -49,7 +49,7 @@ public class StagiaireController {
                 stagiaire.setDebut(rs.getDate("debut"));
                 stagiaire.setFin(rs.getDate("fin"));
                 stagiaire.setEntreprise(rs.getString("entreprise"));
-                stagiaire.setMds(rs.getInt("id_tuteur"));
+                stagiaire.setMds(rs.getString("mds"));
                 stagiaire.setStage_adresse(rs.getString("stage_adresse"));
                 stagiaire.setNote_tech(rs.getInt("note_tech"));
                 stagiaire.setNote_com(rs.getInt("note_com"));
@@ -91,7 +91,7 @@ public class StagiaireController {
                 stagiaire.setDebut(rs.getDate("debut"));
                 stagiaire.setFin(rs.getDate("fin"));
                 stagiaire.setEntreprise(rs.getString("entreprise"));
-                stagiaire.setMds(rs.getInt("id_tuteur"));
+                stagiaire.setMds(rs.getString("mds"));
                 stagiaire.setStage_adresse(rs.getString("stage_adresse"));
                 stagiaire.setNote_tech(rs.getInt("note_tech"));
                 stagiaire.setNote_com(rs.getInt("note_com"));
@@ -155,6 +155,7 @@ public class StagiaireController {
                                                         + "debut = ? ,"
                                                         + "fin = ? ,"
                                                         + "entreprise = ? ,"
+                                                        + "mds = ? ,"
                                                         + "stage_adresse = ? ,"
                                                         + "note_tech = ? ,"
                                                         + "note_com = ? "
@@ -171,10 +172,11 @@ public class StagiaireController {
             pstmt.setDate(9, stagiaire.getDebut());
             pstmt.setDate(10, stagiaire.getFin());
             pstmt.setString(11, stagiaire.getEntreprise());
-            pstmt.setString(12, stagiaire.getStage_adresse());
-            pstmt.setInt(13, stagiaire.getNote_tech());
-            pstmt.setInt(14, stagiaire.getNote_com());         
-            pstmt.setInt(15, stagiaire.getId());
+            pstmt.setString(12, stagiaire.getMds());
+            pstmt.setString(13, stagiaire.getStage_adresse());
+            pstmt.setInt(14, stagiaire.getNote_tech());
+            pstmt.setInt(15, stagiaire.getNote_com());         
+            pstmt.setInt(16, stagiaire.getId());
             pstmt.executeUpdate();
                       
             PreparedStatement pstmt2 = c.prepareStatement("UPDATE stagiaire SET "
