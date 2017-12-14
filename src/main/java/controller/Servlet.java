@@ -135,6 +135,15 @@ public class Servlet extends HttpServlet {
                     
             
         }
+        else if (request.getParameter("createPDF")!=null){
+            StagiaireController stagiaireController = new StagiaireController();
+            Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("createPDF"));
+            
+            request.getParameter("commentaire");
+            request.getParameter("description");
+                    
+            
+        }
     }
 
     /**
