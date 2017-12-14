@@ -144,8 +144,6 @@ public class StagiaireController {
         try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
 
             PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET "
-                                                        + "nom = ? ,"
-                                                        + "classe = ? ,"
                                                         + "cdc = ? ,"
                                                         + "fiche_visite = ? ,"
                                                         + "fiche_evaluation = ? ,"
