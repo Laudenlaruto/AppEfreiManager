@@ -25,12 +25,11 @@ import sources.UserController;
  *
  * @author PC-Acta
  */
-public class Servlet extends HttpServlet {
 
+public class Servlet extends HttpServlet {
     private static final String PAGE_PROFIL = "/WEB-INF/profil.jsp";
     private static final String PAGE_INDEX = "/WEB-INF/index.jsp";
     private static final String PAGE_DECONNEXION = "/WEB-INF/deconnexion.jsp";
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
