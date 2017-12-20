@@ -42,9 +42,9 @@ public class DocumentPDF {
         String Entreprise = stagiaire.getEntreprise();
         try{
             String space = "                                                                                                                                 ";   
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("Test.pdf"));
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(System.getProperty("user.home")+"/Downloads/"+"Fiche_"+NomEleve+"_"+PrenomEleve+".pdf"));
             document.open();
-            Image logoEfrei = Image.getInstance("efreilogo.jpg");
+            Image logoEfrei = Image.getInstance("D:\\Bureau\\cmarquet-lamagnere\\Mes documents\\NetBeansProjects\\AppEfreiManager\\efreilogo.jpg");
             document.add (logoEfrei);
             Font Content = new Font (FontFamily.TIMES_ROMAN, 12, Font.BOLD);
             Font fontTitre = new Font(FontFamily.TIMES_ROMAN,15, Font.BOLD|Font.UNDERLINE); 

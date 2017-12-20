@@ -114,7 +114,7 @@ public class StagiaireController {
             PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET commentaire = ? where id_stagiaire = ?");
             pstmt.setString(1, com);
             pstmt.setInt(2, id_stag);
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,36 +131,36 @@ public class StagiaireController {
             PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET description_mission = ? where id_stagiaire = ?");
             pstmt.setString(1, description);
             pstmt.setInt(2, id_stag);
-            pstmt.executeQuery();
+            pstmt.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-        public void updateStagiaire(Stagiaire stagiaire) throws IOException {
+
+    public void updateStagiaire(Stagiaire stagiaire) throws IOException {
         Properties prop = PropertyLoader.load();
 
         try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
 
             PreparedStatement pstmt = c.prepareStatement("UPDATE entreprise SET "
-                                                        + "cdc = ? ,"
-                                                        + "fiche_visite = ? ,"
-                                                        + "fiche_evaluation = ? ,"
-                                                        + "sondage_web = ? ,"
-                                                        + "rapport_rendu = ? ,"
-                                                        + "soutenance = ? ,"
-                                                        + "visite_planification = ? ,"
-                                                        + "visite_faite = ? ,"
-                                                        + "debut = ? ,"
-                                                        + "fin = ? ,"
-                                                        + "entreprise = ? ,"
-                                                        + "mds = ? ,"
-                                                        + "stage_adresse = ? ,"
-                                                        + "note_tech = ? ,"
-                                                        + "note_com = ? "
-                                                        + "WHERE id_stagiaire = ?");
-            
+                    + "cdc = ? ,"
+                    + "fiche_visite = ? ,"
+                    + "fiche_evaluation = ? ,"
+                    + "sondage_web = ? ,"
+                    + "rapport_rendu = ? ,"
+                    + "soutenance = ? ,"
+                    + "visite_planification = ? ,"
+                    + "visite_faite = ? ,"
+                    + "debut = ? ,"
+                    + "fin = ? ,"
+                    + "entreprise = ? ,"
+                    + "mds = ? ,"
+                    + "stage_adresse = ? ,"
+                    + "note_tech = ? ,"
+                    + "note_com = ? "
+                    + "WHERE id_stagiaire = ?");
+
             pstmt.setBoolean(1, stagiaire.isCdc());
             pstmt.setBoolean(2, stagiaire.isFiche_visite());
             pstmt.setBoolean(3, stagiaire.isFiche_evaluation());
@@ -175,15 +175,15 @@ public class StagiaireController {
             pstmt.setString(12, stagiaire.getMds());
             pstmt.setString(13, stagiaire.getStage_adresse());
             pstmt.setInt(14, stagiaire.getNote_tech());
-            pstmt.setInt(15, stagiaire.getNote_com());         
+            pstmt.setInt(15, stagiaire.getNote_com());
             pstmt.setInt(16, stagiaire.getId());
             pstmt.executeUpdate();
-                      
+
             PreparedStatement pstmt2 = c.prepareStatement("UPDATE stagiaire SET "
-                                                        + "nom = ? ,"
-                                                        + "classe = ? "
-                                                        + "WHERE id = ?");
-            
+                    + "nom = ? ,"
+                    + "classe = ? "
+                    + "WHERE id = ?");
+
             pstmt2.setString(1, stagiaire.getNom());
             pstmt2.setString(2, stagiaire.getClasse());
             pstmt2.setInt(3, stagiaire.getId());
@@ -193,4 +193,107 @@ public class StagiaireController {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public ArrayList<Stagiaire> getStagiairesSansTuteur() throws IOException {
+        Properties prop = PropertyLoader.load();
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
+            PreparedStatement pstmt = c.prepareStatement("SELECT id, nom, prenom, classe from Stagiaire WHERE ID NOT IN (SELECT id_stagiaire from Entreprise)");
+
+            ResultSet rs = pstmt.executeQuery();
+            ArrayList<Stagiaire> stagiaires = new ArrayList<>();
+
+            while (rs.next()) {
+                Stagiaire stagiaire = new Stagiaire();
+                stagiaire.setId(rs.getInt("id"));
+                stagiaire.setNom(rs.getString("nom"));
+                stagiaire.setPrenom(rs.getString("prenom"));
+                stagiaire.setClasse(rs.getString("classe"));
+                stagiaires.add(stagiaire);
+            }
+            return stagiaires;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+    
+        public Stagiaire getStagiaireSansTuteur(String idstag) throws IOException {
+        Properties prop = PropertyLoader.load();
+        int id_stag = Integer.parseInt(idstag);
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
+            PreparedStatement pstmt = c.prepareStatement("SELECT id, nom, prenom, classe from Stagiaire WHERE id = ?");
+            pstmt.setInt(1, id_stag);
+            ResultSet rs = pstmt.executeQuery();
+
+            Stagiaire stagiaire = new Stagiaire();
+            rs.next();
+            stagiaire.setId(rs.getInt("id"));
+            stagiaire.setNom(rs.getString("nom"));
+            stagiaire.setPrenom(rs.getString("prenom"));
+            stagiaire.setClasse(rs.getString("classe"));
+
+            return stagiaire;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+    
+    
+
+    public Stagiaire addStagiaire(Stagiaire stagiaire, String id_tuteur) throws IOException {
+        Properties prop = PropertyLoader.load();
+        try (Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"), prop.getProperty("logindatabase"), prop.getProperty("mdpdatabase"))) {
+            
+
+            PreparedStatement pstmt = c.prepareStatement("INSERT INTO entreprise("
+                    + "id_stagiaire,"
+                    + "id_tuteur,"
+                    + "cdc,fiche_visite,"
+                    + "fiche_evaluation,"
+                    + "sondage_web,"
+                    + "rapport_rendu,"
+                    + "soutenance,"
+                    + "visite_planification,"
+                    + "visite_faite,"
+                    + "debut,"
+                    + "fin,"
+                    + "entreprise,"
+                    + "mds,"
+                    + "stage_adresse,"
+                    + "note_tech,"
+                    + "note_com,"
+                    + "description_mission,"
+                    + "commentaire) "
+                    + "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            pstmt.setInt(1, stagiaire.getId());
+            pstmt.setInt(2, Integer.parseInt(id_tuteur));
+            pstmt.setBoolean(3, stagiaire.isCdc());
+            pstmt.setBoolean(4, stagiaire.isFiche_visite());
+            pstmt.setBoolean(5, stagiaire.isFiche_evaluation());
+            pstmt.setBoolean(6, stagiaire.isSondage_web());
+            pstmt.setBoolean(7, stagiaire.isRapport_rendu());
+            pstmt.setBoolean(8, stagiaire.isSoutenance());
+            pstmt.setBoolean(9, stagiaire.isVisite_planif());
+            pstmt.setBoolean(10, stagiaire.isVisite_faite());
+            pstmt.setDate(11, stagiaire.getDebut());
+            pstmt.setDate(12, stagiaire.getFin());
+            pstmt.setString(13, stagiaire.getEntreprise());
+            pstmt.setString(14, stagiaire.getMds());
+            pstmt.setString(15, stagiaire.getStage_adresse());
+            pstmt.setInt(16, stagiaire.getNote_tech());
+            pstmt.setInt(17, stagiaire.getNote_com());
+            pstmt.setString(18, stagiaire.getDescription_mission());
+            pstmt.setString(19, stagiaire.getCommentaire());
+
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+
 }

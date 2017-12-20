@@ -24,6 +24,11 @@ public class User {
         this.nom = null;
         this.prenom = null;
     }
+    
+        public User(String nom, String Prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    }
 
     public int getId() {
         return id;

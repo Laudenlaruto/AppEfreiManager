@@ -4,16 +4,3 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function(){
-  $('.modal').modal();
-    
-
-    $("#").click(function () {
-        var doc = new jsPDF();
-        
-        doc.text('Hello world!', 10, 10);
-        doc.save('a4.pdf');
-    });
-});
-
-

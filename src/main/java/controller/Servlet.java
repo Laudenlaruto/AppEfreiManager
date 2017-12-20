@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import proprietes.DocumentPDF;
 import sources.StagiaireController;
 import sources.UserController;
 
@@ -31,6 +32,8 @@ public class Servlet extends HttpServlet {
     private static final String PAGE_PROFIL = "/WEB-INF/profil.jsp";
     private static final String PAGE_INDEX = "/WEB-INF/index.jsp";
     private static final String PAGE_DECONNEXION = "/WEB-INF/deconnexion.jsp";
+    private static final String PAGE_DETAIL = "/WEB-INF/detail.jsp";
+    private static final String PAGE_AJOUTER = "/WEB-INF/ajouter.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -101,8 +104,14 @@ public class Servlet extends HttpServlet {
             request.getServletContext().getRequestDispatcher(PAGE_DECONNEXION).forward(request, response);
         } else if (request.getParameter("returnhome") != null) {
             request.getSession().invalidate();
-            request.getServletContext().getRequestDispatcher(PAGE_INDEX).forward(request, response);
-
+            request.getServletContext().getRequestDispatcher(PAGE_INDEX).forward(request, response);       
+        }
+        else if (request.getParameter("returnprofil") != null) {
+            StagiaireController stagiaireController = new StagiaireController();
+            List<Stagiaire> stagiaires = stagiaireController.getStagiaires((int)(request.getSession().getAttribute("userid")));
+            request.setAttribute("stagiaires", stagiaires);
+            request.setAttribute("size", stagiaires.size());
+            request.getRequestDispatcher(PAGE_PROFIL).forward(request, response);
         }
         else if (request.getParameter("getuser")!=null){
             StagiaireController stagiaireController = new StagiaireController();
@@ -113,7 +122,7 @@ public class Servlet extends HttpServlet {
             response.getWriter().write(json);
 
         } else if (request.getParameter("actionupdatestagiaire") != null) {
-             StagiaireController stag = new StagiaireController();
+            StagiaireController stag = new StagiaireController();
             String[] id = request.getParameterValues("id");
             for (int i=0; i<id.length;i++){
                 Stagiaire stagiaire = new Stagiaire();
@@ -146,23 +155,43 @@ public class Servlet extends HttpServlet {
             request.getRequestDispatcher(PAGE_PROFIL).forward(request, response);
 
         }
-        else if (request.getParameter("createPDF")!=null){
-            StagiaireController stagiaireController = new StagiaireController();
-            Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("createPDF"));
+        else if (request.getParameter("actionvalider")!=null){
+            String idStagiaire = request.getParameter("idstag");
+            StagiaireController stag = new StagiaireController();
+            stag.updateCommentaire(request.getParameter("commentaire"), idStagiaire);
+            stag.updateDescription(request.getParameter("description_mission"), idStagiaire);
             
-            request.getParameter("commentaire");
-            request.getParameter("description");
-                    
+            String nomUser = request.getParameter("nomUser");
+            String prenomUser = request.getParameter("prenomUser");
+
+            DocumentPDF pdf = new DocumentPDF(stag.getStagiaire(idStagiaire),new User(nomUser,prenomUser) );
+            
+            request.setAttribute("detailstagiaire", stag.getStagiaire(idStagiaire));
+            request.getRequestDispatcher(PAGE_DETAIL).forward(request, response);
             
         }
-        else if (request.getParameter("createPDF")!=null){
-            StagiaireController stagiaireController = new StagiaireController();
-            Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("createPDF"));
+        else if (request.getParameter("actiondetailstagiaire")!=null){
+            String idStagiaire = request.getParameter("idstag");
+            StagiaireController stag = new StagiaireController();
+            request.setAttribute("detailstagiaire", stag.getStagiaire(idStagiaire));
+            request.getRequestDispatcher(PAGE_DETAIL).forward(request, response); 
+        }
+        else if (request.getParameter("actionajouterstagiaire")!=null){
+            StagiaireController stag = new StagiaireController();
+            List<Stagiaire> stagiaires = stag.getStagiairesSansTuteur();
+            request.setAttribute("stagiaires", stagiaires);
+            request.getRequestDispatcher(PAGE_AJOUTER).forward(request, response); 
+        }
+        else if (request.getParameter("ajout")!=null){
+            String idStagiaire = request.getParameter("idstag");
+            StagiaireController stag = new StagiaireController();
+            System.out.println("ID DU STAGIAIRE :"+request.getParameter("idstag")+":");
+            System.out.println("ID DU TUTEUR :"+request.getParameter("idtuteur")+":");
+            stag.addStagiaire(stag.getStagiaireSansTuteur(idStagiaire),request.getParameter("idtuteur"));
             
-            request.getParameter("commentaire");
-            request.getParameter("description");
-                    
-            
+            List<Stagiaire> stagiaires = stag.getStagiairesSansTuteur();
+            request.setAttribute("stagiaires", stagiaires);
+            request.getRequestDispatcher(PAGE_AJOUTER).forward(request, response); 
         }
     }
 

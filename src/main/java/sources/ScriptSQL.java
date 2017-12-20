@@ -29,7 +29,7 @@ public class ScriptSQL {
                     prop = properties.PropertyLoader.load();
                     Connection c = DriverManager.getConnection(prop.getProperty("databasedriver") + prop.getProperty("database"),prop.getProperty("logindatabase"),prop.getProperty("mdpdatabase"));
                     Statement stmt = c.createStatement();
-/*
+
 stmt.executeUpdate("CREATE TABLE tuteur(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),nom VARCHAR(24),prenom VARCHAR(24),login VARCHAR(24),mdp VARCHAR(24))");                
 stmt.executeUpdate("CREATE TABLE stagiaire(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), nom VARCHAR(24),prenom VARCHAR(24),classe VARCHAR(5))");
 stmt.executeUpdate("CREATE TABLE entreprise(id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),id_stagiaire INTEGER,id_tuteur INTEGER,cdc BOOLEAN,fiche_visite BOOLEAN,fiche_evaluation BOOLEAN,sondage_web BOOLEAN,rapport_rendu BOOLEAN,soutenance BOOLEAN,visite_planification BOOLEAN,visite_faite BOOLEAN,debut DATE,fin DATE,entreprise VARCHAR(64),mds VARCHAR(64),stage_adresse VARCHAR(64), note_tech INTEGER,  note_com INTEGER, description_mission VARCHAR(64), commentaire VARCHAR(64))");
@@ -52,7 +52,7 @@ stmt.executeUpdate("INSERT INTO stagiaire(nom,prenom,classe) values('Lachambre',
 stmt.executeUpdate("INSERT INTO stagiaire(nom,prenom,classe) values('Boukari','Bryan','M1')");
 stmt.executeUpdate("INSERT INTO stagiaire(nom,prenom,classe) values('Alermoz','Florian','M1')");
 stmt.executeUpdate("INSERT INTO stagiaire(nom,prenom,classe) values('Michau','Victor','M1')");
-*/
+
 stmt.executeUpdate("INSERT INTO entreprise(id_stagiaire,id_tuteur,cdc,fiche_visite,fiche_evaluation,sondage_web,rapport_rendu,soutenance,visite_planification,visite_faite,debut,fin,entreprise,mds,stage_adresse,note_tech,note_com,description_mission,commentaire) values(1,4,false,true,false,false,false,false,false,true,'2017-09-01','2018-08-31','EDF','Jacques','62 rue du tonnerre',12,15,'Gerer les BD','RAS')");
 stmt.executeUpdate("INSERT INTO entreprise(id_stagiaire,id_tuteur,cdc,fiche_visite,fiche_evaluation,sondage_web,rapport_rendu,soutenance,visite_planification,visite_faite,debut,fin,entreprise,mds,stage_adresse,note_tech,note_com,description_mission,commentaire) values(2,4,false,true,false,false,true,false,false,true,'2017-09-01','2018-08-31','EDF','Jacques','62 rue du tonnerre',12,15,'Gerer le site','Super')");
 stmt.executeUpdate("INSERT INTO entreprise(id_stagiaire,id_tuteur,cdc,fiche_visite,fiche_evaluation,sondage_web,rapport_rendu,soutenance,visite_planification,visite_faite,debut,fin,entreprise,mds,stage_adresse,note_tech,note_com,description_mission,commentaire) values(3,4,true,false,true,false,false,false,true,false,'2017-09-01','2018-08-31','EDF','Jacques','62 rue du tonnerre',12,15,'Gerer le courant','Quelques problèmes')");
