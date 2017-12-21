@@ -124,13 +124,13 @@
                                 </p>
                             </td>
 
-                            <td><input type="text" name="${stagiaire.id}.startDate" value="${stagiaire.debut}" /></td>
-                            <td><input type="text" name="${stagiaire.id}.endDate" value="${stagiaire.fin}" /></td>
+                            <td><input type="date" name="${stagiaire.id}.startDate" value="${stagiaire.debut}" /></td>
+                            <td><input type="date" name="${stagiaire.id}.endDate" value="${stagiaire.fin}" /></td>
                             <td><input type="text" name="${stagiaire.id}.entreprise" value="${stagiaire.entreprise}" /></td>
                             <td><input type="text" name="${stagiaire.id}.mds" value="${stagiaire.mds}" /></td>
                             <td><input type="text" name="${stagiaire.id}.addr" value="${stagiaire.stage_adresse}" /></td>
-                            <td><input type="text" name="${stagiaire.id}.note_tech" value="${stagiaire.note_tech}" /></td>
-                            <td><input type="text" name="${stagiaire.id}.note_com" value="${stagiaire.note_com}" /></td>
+                            <td><input type="number" name="${stagiaire.id}.note_tech" value="${stagiaire.note_tech}" /></td>
+                            <td><input type="number" name="${stagiaire.id}.note_com" value="${stagiaire.note_com}" /></td>
 
 
                             </tr>
