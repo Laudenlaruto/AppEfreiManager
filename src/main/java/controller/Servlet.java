@@ -87,8 +87,12 @@ public class Servlet extends HttpServlet {
 
                     StagiaireController stagiaireController = new StagiaireController();
                     List<Stagiaire> stagiaires = stagiaireController.getStagiaires(user.getId());
-                    request.setAttribute("stagiaires", stagiaires);
-                    request.setAttribute("size", stagiaires.size());
+                    
+                    request.getSession().setAttribute("stagiares", stagiaires);
+                    request.getSession().setAttribute("size", stagiaires.size());
+
+                    request.setAttribute("stagiaires", request.getSession().getAttribute("stagiares"));
+                    request.setAttribute("size", request.getSession().getAttribute("size"));
 
                     request.getRequestDispatcher(PAGE_PROFIL).forward(request, response);
                 } else {
@@ -113,15 +117,7 @@ public class Servlet extends HttpServlet {
             request.setAttribute("size", stagiaires.size());
             request.getRequestDispatcher(PAGE_PROFIL).forward(request, response);
         }
-        else if (request.getParameter("getuser")!=null){
-            StagiaireController stagiaireController = new StagiaireController();
-            Stagiaire stagiaire = stagiaireController.getStagiaire(request.getParameter("getuser"));
-            String json = new Gson().toJson(stagiaire);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(json);
-
-        } else if (request.getParameter("actionupdatestagiaire") != null) {
+        else if (request.getParameter("actionupdatestagiaire") != null) {
             StagiaireController stag = new StagiaireController();
             String[] id = request.getParameterValues("id");
             for (int i=0; i<id.length;i++){
@@ -137,8 +133,12 @@ public class Servlet extends HttpServlet {
                 stagiaire.setSoutenance(request.getParameter(id[i]+".soutenance")!=null);
                 stagiaire.setVisite_planif(request.getParameter(id[i]+".visite_planif")!=null);
                 stagiaire.setVisite_faite(request.getParameter(id[i]+".visite_faite")!=null);
-                stagiaire.setDebut(Date.valueOf(request.getParameter(id[i]+".startDate")));
-                stagiaire.setFin(Date.valueOf(request.getParameter(id[i]+".endDate")));
+                if(!request.getParameter(id[i]+".startDate").equals("")){
+                    stagiaire.setDebut(Date.valueOf(request.getParameter(id[i]+".startDate")));
+                }
+                if(!request.getParameter(id[i]+".endDate").equals("")){
+                      stagiaire.setFin(Date.valueOf(request.getParameter(id[i]+".endDate")));
+                }
                 stagiaire.setEntreprise(request.getParameter(id[i]+".entreprise"));
                 stagiaire.setMds(request.getParameter(id[i]+".mds"));
                 stagiaire.setStage_adresse(request.getParameter(id[i]+".addr"));
@@ -147,14 +147,14 @@ public class Servlet extends HttpServlet {
                 
                 stag.updateStagiaire(stagiaire);
             }
-            
             StagiaireController stagiaireController = new StagiaireController();
-            List<Stagiaire> stagiaires = stagiaireController.getStagiaires((int)(request.getSession().getAttribute("userid")));
+            List<Stagiaire> stagiaires = stagiaireController.getStagiaires((int)request.getSession().getAttribute("userid"));
             request.setAttribute("stagiaires", stagiaires);
             request.setAttribute("size", stagiaires.size());
             request.getRequestDispatcher(PAGE_PROFIL).forward(request, response);
 
         }
+        //Génaration du PDF
         else if (request.getParameter("actionvalider")!=null){
             String idStagiaire = request.getParameter("idstag");
             StagiaireController stag = new StagiaireController();
@@ -170,18 +170,33 @@ public class Servlet extends HttpServlet {
             request.getRequestDispatcher(PAGE_DETAIL).forward(request, response);
             
         }
+        //Detail d'un stagiaire
         else if (request.getParameter("actiondetailstagiaire")!=null){
-            String idStagiaire = request.getParameter("idstag");
-            StagiaireController stag = new StagiaireController();
-            request.setAttribute("detailstagiaire", stag.getStagiaire(idStagiaire));
-            request.getRequestDispatcher(PAGE_DETAIL).forward(request, response); 
+            if(request.getParameterValues( "idstag" ) != null){
+                String idStagiaire = request.getParameter("idstag");
+                StagiaireController stag = new StagiaireController();
+                request.setAttribute("detailstagiaire", stag.getStagiaire(idStagiaire));
+                request.getRequestDispatcher(PAGE_DETAIL).forward(request, response); 
+            }else{
+                request.setAttribute("erreur", "Veuillez cocher une case");
+                
+                StagiaireController stagiaireController = new StagiaireController();
+                List<Stagiaire> stagiaires = stagiaireController.getStagiaires((int)request.getSession().getAttribute("userid"));
+                request.setAttribute("stagiaires", stagiaires);
+               request.setAttribute("size", stagiaires.size());
+               request.getServletContext().getRequestDispatcher(PAGE_PROFIL).forward(request, response);
+            }
+            
+            
         }
+        //Ajouter un stagiaire
         else if (request.getParameter("actionajouterstagiaire")!=null){
             StagiaireController stag = new StagiaireController();
             List<Stagiaire> stagiaires = stag.getStagiairesSansTuteur();
             request.setAttribute("stagiaires", stagiaires);
             request.getRequestDispatcher(PAGE_AJOUTER).forward(request, response); 
         }
+        //Valider création d'un stagiaire
         else if (request.getParameter("ajout")!=null){
             String idStagiaire = request.getParameter("idstag");
             StagiaireController stag = new StagiaireController();

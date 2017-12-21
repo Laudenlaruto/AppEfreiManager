@@ -38,6 +38,7 @@
 
         <c:choose>
             <c:when test="${not empty stagiaires}">
+               
                 <form action='Servlet' method='POST'>
                     <table class="centered striped">
                         <thead>
@@ -66,7 +67,7 @@
                             <c:forEach items="${stagiaires}" var="stagiaire">
                                 <tr>
                                     <td>
-                                        <input name="idstag" type="radio" id="${stagiaire.id}" value="${stagiaire.id}" required />
+                                        <input name="idstag" type="radio" id="${stagiaire.id}" value="${stagiaire.id}" />
                                         <label for="${stagiaire.id}"></label>
                                     </td>
                             <input type="hidden" name="id" value="${stagiaire.id}" />                                   
@@ -141,118 +142,22 @@
 
                     <div class="right">
                         <button type='submit' name='actionupdatestagiaire' class='btn  waves-effect indigo'><i class="material-icons right">cached</i>Mettre à jour stagiaire</button>
+                            
                         <button type='submit' name='actiondetailstagiaire' class="btn  waves-effect indigo"><i class="material-icons right">assignment</i>Détails</button>
+                        
                         <button type='submit' name='actionajouterstagiaire' class="btn  waves-effect indigo"><i class="material-icons right">note_add</i>Ajouter un stagiaire</button>
                     </div>
+                     <c:if test="${not empty erreur}">
+                    <div class ="row">
+                        <div id="card-alert" class="card red col s2 offset-s8">
+                      <div class="card-content white-text">
+                          <p><c:out value="${erreur}"/></p>
+                      </div>
+                    </div>  
+                    </div>    
+                    </c:if>
                 </form>
-                <div id="details" class="modal">
-                    <div class="modal-content">
-                        <h4>Stagiaires</h4>
-                        <p id="idstag"></p>
-                        <p id="data"></p>
-                        <table class="striped">
-                            <tbody>
-                                <tr>
-                                    <td>Classe</td>
-                                    <td><span id="classe"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Nom</td>
-                                    <td><span id="nom"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Prenom</td>
-                                    <td><span id="prenom"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Cdc</td>
-                                    <td><input type="checkbox" id="cdc" checked="false" disabled="disabled" /> <label for="cdc"></label></td>
-                                </tr>
-                                <tr>
-                                    <td>Fiche visite</td>
-                                    <td><input type="checkbox" id="fiche_visite" checked="false" disabled="disabled" /> <label for="fiche_visite"></label></td>
-                                </tr>
-                                <tr>    
-                                    <td>Visite</td>
-                                    <td><input type="checkbox" id="visite" checked="false" disabled="disabled" /> <label for="visite"></label></td>
-                                </tr>
-                                <tr>
-                                    <td>Fiche Evaluation</td>
-                                    <td><input type="checkbox" id="fiche_evaluation" checked="false" disabled="disabled" /> <label for="fiche_evaluation"></label></td>
-                                </tr>
-                                <tr>
-                                    <td>Sondage web</td>
-                                    <td><input type="checkbox" id="sondage_web" checked="false" disabled="disabled" /> <label for="sondage_web"></label></td>
-                                </tr>
-                                <tr>
-                                    <td>Rapport rendu</td>
-                                    <td><input type="checkbox" id="rapport_rendu" checked="false" disabled="disabled" /> <label for="rapport_rendu"></label></td>
-                                </tr>
-                                <tr>
-                                    <td>Soutenance</td>
-                                    <td><input type="checkbox" id="soutenance" checked="false" disabled="disabled" /> <label for="soutenance"></label></td>
-                                </tr>
-                                <tr>
-                                    <td>Visite planif</td>
-                                    <td><input type="checkbox" id="visite_planif" checked="false" disabled="disabled" /> <label for="visite_planif"></label></td>
-                                </tr>
-                                <tr>
-                                    <td>Visite faite</td>
-                                    <td><input type="checkbox" id="visite_faite" checked="false" disabled="disabled" /> <label for="visite_faite"></label></td>
-                                </tr>
-                                <tr>
-                                    <td>Debut</td>
-                                    <td><span id="debut"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Fin</td>
-                                    <td><span id="fin"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Entreprise</td>
-                                    <td><span id="entreprise"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Mds</td>
-                                    <td><span id="mds"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Stage adresse</td>
-                                    <td><span id="stage_adresse"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Note tech</td>
-                                    <td><span id="note_tech"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Note com</td>
-                                    <td><span id="note_com"></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="commentaire" class="materialize-textarea"></textarea>
-                                <label for="de">Commentaire</label>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea id="description_mission" class="materialize-textarea"></textarea>
-                                <label for="de">Description Mission</label>
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="valider">Valider</a>
-                    </div>
-                </div>
+                  
 
             </c:when>
             <c:otherwise>
