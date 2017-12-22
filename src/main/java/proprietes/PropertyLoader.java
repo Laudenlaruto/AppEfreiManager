@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package properties;
+package proprietes;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 public class PropertyLoader {
 
-    private static final String PROPRIETESFILE = "database.properties";
+    private static final String PROPRIETESFILE = "properties/database.properties";
 
     public static Properties load() throws IOException, FileNotFoundException {
         Properties properties = new Properties();

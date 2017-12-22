@@ -132,9 +132,13 @@
                                     <input type="hidden" value="${detailstagiaire.id}" name="idstag">
                                     <input type="hidden" value="${user.getNom()}" name="nomUser"> 
                                     <input type="hidden" value="${user.getPrenom()}" name="prenomUser"> 
-                                    <button type='submit' name='actionvalider' class="col s2 btn  waves-effect offset-s3"><i class="material-icons right">file_download</i>Valider</button>
+                                    <button type='submit' name='actionvalider' class="col s2 btn  waves-effect offset-s3" onclick="Materialize.toast('PDF télécharge dans votre repertoire de téléchargment',4000)"><i class="material-icons right">file_download</i>Valider</button>
                                 </form>
+                                    
+                                    
+ 
                         </div>
+
                     </div>
                                 
     </body>

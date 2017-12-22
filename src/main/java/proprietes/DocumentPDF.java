@@ -41,11 +41,12 @@ public class DocumentPDF {
         String Titre = stagiaire.getDescription_mission();
         String Entreprise = stagiaire.getEntreprise();
         try{
+            String file = System.getProperty("user.home")+"/Downloads/"+"Fiche_"+NomEleve+"_"+PrenomEleve+".pdf";
             String space = "                                                                                                                                 ";   
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(System.getProperty("user.home")+"/Downloads/"+"Fiche_"+NomEleve+"_"+PrenomEleve+".pdf"));
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
-            Image logoEfrei = Image.getInstance("D:\\Bureau\\cmarquet-lamagnere\\Mes documents\\NetBeansProjects\\AppEfreiManager\\efreilogo.jpg");
-            document.add (logoEfrei);
+            Image logoEfrei = Image.getInstance(getClass().getClassLoader().getResource("images/efreilogo.jpg"));
+            document.add (logoEfrei);   
             Font Content = new Font (FontFamily.TIMES_ROMAN, 12, Font.BOLD);
             Font fontTitre = new Font(FontFamily.TIMES_ROMAN,15, Font.BOLD|Font.UNDERLINE); 
             Paragraph titre = new Paragraph("FICHE DE VISITE", fontTitre);
@@ -121,6 +122,7 @@ public class DocumentPDF {
             
             document.close();
             writer.close();
+            
         } catch (DocumentException | FileNotFoundException ex) {
             Logger.getLogger(DocumentPDF.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
