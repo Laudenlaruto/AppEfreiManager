@@ -134,8 +134,15 @@
                                     <input type="hidden" value="${user.getPrenom()}" name="prenomUser"> 
                                     <button type='submit' name='actionvalider' class="col s2 btn  waves-effect offset-s3" onclick="Materialize.toast('PDF télécharge dans votre repertoire de téléchargment',4000)"><i class="material-icons right">file_download</i>Valider</button>
                                 </form>
-                                    
-                                    
+                                     <c:if test="${not empty popup}">
+                                        <div class="col s2 offset-s3">
+                                           <div class="card-panel teal">
+                                             <span class="white-text">
+                                                 ${popup}
+                                             </span>
+                                           </div>
+                                        </div>   
+                                    </c:if>
  
                         </div>
 

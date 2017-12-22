@@ -167,6 +167,7 @@ public class Servlet extends HttpServlet {
             DocumentPDF pdf = new DocumentPDF(stag.getStagiaire(idStagiaire),new User(nomUser,prenomUser) );
             
             request.setAttribute("detailstagiaire", stag.getStagiaire(idStagiaire));
+            request.setAttribute("popup","Le PDF à été téléchargé dans votre dossier Téléchargement");
             request.getRequestDispatcher(PAGE_DETAIL).forward(request, response);
             
         }
